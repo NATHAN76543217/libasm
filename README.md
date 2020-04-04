@@ -1,2 +1,2 @@
 # libasm
-librairie statique coder en ASM64
+librairie statique codé en ASM64
