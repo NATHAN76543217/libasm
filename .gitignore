@@ -1,0 +1,4 @@
+libasm.a
+*.o
+exec
+nasm
