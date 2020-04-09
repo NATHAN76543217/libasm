@@ -26,7 +26,7 @@ SRC_LIST_C	=	main.c
 PATH_OBJ_C	=	objs_c
 
 #asm sources
-SRC_LIST_S	= 	ft_write.s
+SRC_LIST_S	= 	ft_write.s ft_strlen.s
 PATH_SRC_S	=	srcs_s
 PATH_OBJ_S	=	objs_s
 
