@@ -1,10 +1,10 @@
 ;size_t	ft_strlen(const char *s);
 ;rdi == char *str
 
-extern	_ft_strlen
+global	ft_strlen
 section .text
 
-_ft_strlen:
+ft_strlen:
 
 	push	rbp
 	mov		rbp, rsp		; init stackframe

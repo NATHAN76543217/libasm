@@ -3,22 +3,29 @@
 ; rsi : void *buf
 ; rdx : size_t nbytes 
 
-extern _ft_write
+global		ft_write
+extern		__errno_location
+%ifidni		__OUTPUT_FORMAT__, efl64
+	%define		ERRNO	__errno_location WRT ..plt
+%elifidni	__OUTPUT_FORMAT__, macho64
+	%define		ERRNO	___error
+
 section .text
-
-_ft_write:
-
+ft_write:
 	push    rbp
 	mov     rbp, rsp
-	cmp		rsi, 0h			;test si chaine de caractere non null
-		jz  err
-	mov     rax, 2000004h ; write
+	mov		rax, 1						; write
 	syscall
-	;faire retour de fonction
+	cmp		rax, 0
+		js	error
 	leave
 	ret
 
-err:
-
-mov		rax, -1
-ret
+error:
+	neg		rax							;invert error code
+	mov		rdi, rax					;save it in rdi
+	call	ERROR	;get errno pointed by rax
+	mov		DWORD [rax], edi			;put error code in errno
+	mov		rax, -1						;put return value -1 in RAX
+	leave
+	ret
