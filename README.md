@@ -11,6 +11,13 @@ Return values are stored in RAX and return value up to 128bits are stored in RAX
  Callee-saved registers: RBX, RBP, R12-R15.
  All others register must be saved by the caller to preserve their values.
 
- # COMMANDS:
+# On Linux
+On syscall error, rax is filled with the negative error code.
+
+# On Darwin
+On syscall rdx is clobbered.
+On syscall error, CF (carry flag) is raised and rax is filled with error code.
+
+# COMMANDS:
 
  LEAVE: mov RSP, RBP + pop RBP

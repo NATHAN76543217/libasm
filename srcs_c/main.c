@@ -11,6 +11,7 @@ int main()
 {
 	tester_write();
 	tester_strlen();
+	tester_strcpy();
 	// print_head("ft-strcmp");
 	return (0);
 }

@@ -3,5 +3,5 @@
 
 long            ft_write(int fd, const void *buf, unsigned long nbyte);
 unsigned long   ft_strlen(const char *s);
-
+char            *ft_strcpy(char *dst, const char *src);
 #endif  //LIBASM_H

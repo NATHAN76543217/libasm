@@ -12,5 +12,5 @@
 void    print_head(char *s);
 void    tester_write(void);
 void    tester_strlen(void);
-
+void    tester_strcpy(void);
 #endif //TEST_H
