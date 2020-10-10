@@ -5,6 +5,7 @@
 
 
 %ifidni		__OUTPUT_FORMAT__, elf64
+	extern		__errno_location
 	%define		ERRNO	__errno_location WRT ..plt
 	%define		NAME	ft_write
 	%assign		WRITE_SYSCALL_NB	0x1 
@@ -13,6 +14,7 @@
 	neg		rax							;invert error code
 	%endmacro
 %elifidni	__OUTPUT_FORMAT__, macho64
+	extern		___error
 	%define		ERRNO	___error
 	%define		NAME	_ft_write
 	%assign		WRITE_SYSCALL_NB	0x2000004
@@ -21,7 +23,6 @@
 	%endmacro
 %endif
 
-extern		ERRNO
 global		NAME
 
 section .text
