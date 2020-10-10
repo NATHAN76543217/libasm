@@ -1,10 +1,18 @@
 ;size_t	ft_strlen(const char *s);
 ;rdi == char *str
 
-global	ft_strlen
-section .text
+%ifidni		__OUTPUT_FORMAT__, elf64
+	%define		ERRNO	__errno_location WRT ..plt
+	%define		NAME	ft_strlen
+%elifidni	__OUTPUT_FORMAT__, macho64
+	%define		ERRNO	___error
+	%define		NAME	_ft_strlen
+%endif
 
-ft_strlen:
+extern		ERRNO
+global		NAME
+
+NAME:
 
 	push	rbp
 	mov		rbp, rsp		; init stackframe

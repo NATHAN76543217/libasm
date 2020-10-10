@@ -3,19 +3,32 @@
 ; rsi : void *buf
 ; rdx : size_t nbytes 
 
-global		ft_write
-extern		__errno_location
+
 %ifidni		__OUTPUT_FORMAT__, elf64
 	%define		ERRNO	__errno_location WRT ..plt
+	%define		NAME	ft_write
+	%assign		WRITE_SYSCALL_NB	0x1 
+	%macro		ERRNO_PROCESS	1
+	
+	neg		rax							;invert error code
+	%endmacro
 %elifidni	__OUTPUT_FORMAT__, macho64
 	%define		ERRNO	___error
+	%define		NAME	_ft_write
+	%assign		WRITE_SYSCALL_NB	0x2000004
+	%macro		ERRNO_PROCESS	1
+	
+	%endmacro
 %endif
 
+extern		ERRNO
+global		NAME
+
 section .text
-ft_write:
+NAME:
 	push    rbp
 	mov     rbp, rsp
-	mov		rax, 1						; write
+	mov		rax, WRITE_SYSCALL_NB		; write
 	syscall
 	cmp		rax, 0
 		js	error
@@ -23,7 +36,7 @@ ft_write:
 	ret
 
 error:
-	neg		rax							;invert error code
+	ERRNO_PROCESS hey
 	mov		rdi, rax					;save it in rdi
 	call	ERRNO	;get errno pointed by rax
 	mov		DWORD [rax], edi			;put error code in errno

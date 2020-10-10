@@ -63,7 +63,7 @@ DIRS_LIST	=	$(shell ls -R srcs 2> /dev/null | grep / | cut -d / -f2-3 | cut -d :
 
 all: $(NAME) $(OBJS_C)
 	@ printf "\r                                                                                          \r"
-	@cc -o tester $(OBJS_C) $(NAME)
+	@ $(CC) -o tester $(OBJS_C) $(NAME)
 
 $(NAME): $(OBJS_S) $(INCS)
 	@ ar -rcs $(NAME) $(OBJS_S)

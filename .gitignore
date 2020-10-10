@@ -2,3 +2,7 @@ libasm.a
 *.o
 exec
 nasm
+libasm_test
+libftest
+.vscode
+tester
