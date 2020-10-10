@@ -50,7 +50,13 @@ C-O			=	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 #nasm compilation
 SC			=	nasm
-SFLAGS		=	-f elf64#-f macho64
+SFLAGS		=	#-f macho64
+UNAME_S		= $(shell uname -s)
+    ifeq ($(UNAME_S),Linux)
+        SFLAGS += -f elf64
+    else ifeq ($(UNAME_S),Darwin)
+        SFLAGS += -f macho64
+    endif
 S-O			=	$(SC) $(SFLAGS) $< -o $@
 
 DIRS_LIST	=	$(shell ls -R srcs 2> /dev/null | grep / | cut -d / -f2-3 | cut -d : -f 1)

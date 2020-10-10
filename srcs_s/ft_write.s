@@ -5,10 +5,11 @@
 
 global		ft_write
 extern		__errno_location
-%ifidni		__OUTPUT_FORMAT__, efl64
+%ifidni		__OUTPUT_FORMAT__, elf64
 	%define		ERRNO	__errno_location WRT ..plt
 %elifidni	__OUTPUT_FORMAT__, macho64
 	%define		ERRNO	___error
+%endif
 
 section .text
 ft_write:
@@ -24,7 +25,7 @@ ft_write:
 error:
 	neg		rax							;invert error code
 	mov		rdi, rax					;save it in rdi
-	call	ERROR	;get errno pointed by rax
+	call	ERRNO	;get errno pointed by rax
 	mov		DWORD [rax], edi			;put error code in errno
 	mov		rax, -1						;put return value -1 in RAX
 	leave
