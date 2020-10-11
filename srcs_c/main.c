@@ -14,5 +14,6 @@ int main()
 	tester_strlen();
 	tester_strcpy();
 	tester_strcmp();
+	tester_strdup();
 	return (0);
 }

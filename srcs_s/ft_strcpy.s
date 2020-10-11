@@ -16,11 +16,11 @@ NAME:
 start:	
 	mov		dl, BYTE[rsi + rcx]
 	mov		BYTE[rdi + rcx], dl 	;copy *src in *des 
-	cmp		BYTE [rdi + rcx], 0h
-	je		end
-	inc		rcx				;
+	cmp		BYTE [rdi + rcx], 0h	;si carac copié = '\0'
+		je	end
+	inc		rcx				;i++
 	jmp		start
 end:
-	mov		rax, rdi
+	mov		rax, rdi		;return des
 	leave					;quit stackframe
 	ret

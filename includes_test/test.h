@@ -16,4 +16,5 @@ void    tester_read(void);
 void    tester_strlen(void);
 void    tester_strcpy(void);
 void    tester_strcmp(void);
+void    tester_strdup(void);
 #endif //TEST_H

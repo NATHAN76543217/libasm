@@ -24,4 +24,5 @@ void    tester_strcmp()
 	test_strcmp("sal", "salut");
 	test_strcmp("hey", "h\0ey");
 	test_strcmp("h\0ey", "hey");
+	test_strcmp("", "");
 }

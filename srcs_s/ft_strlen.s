@@ -17,12 +17,10 @@ NAME:
 
 	mov		rcx, 0h			; init compteur à 0
 	cmp		rdi, 0h			; si chaine null		
-	jz		end_while
-	mov		rdx, rdi
+		jz	end_while
 	while:
-	cmp		BYTE[rdx], 0h	; si la valeur pointé par rdx est '\0'
-	jz		end_while
-	inc		rdx
+	cmp		BYTE[rdi + rcx], 0h	; si la valeur pointé par rdx est '\0'
+		jz	end_while
 	inc		rcx
 	jmp		while
 	end_while:
