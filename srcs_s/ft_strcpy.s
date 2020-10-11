@@ -7,6 +7,8 @@
 %endif
 
 global NAME
+
+section .text
 NAME:
 	push    rbp
 	mov     rbp, rsp		;init stackframe

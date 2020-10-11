@@ -1,0 +1,5 @@
+12345678910 11 12 13 14 15 '\0' salut
+abcdefghijklmnopqrstuvwxyz
+YOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOY
+
+ploiuc

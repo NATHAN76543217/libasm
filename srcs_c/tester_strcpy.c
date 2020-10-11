@@ -8,11 +8,11 @@ void    test_strcpy(char *des, char *src)
 	errno = 0;
 	dprintf(1, "\033[1;36mExpected:\033[0m size= ");
 	esp_ret = strcpy(des,src);
-	dprintf(1, "%s|%-5d \033[1;31merrno\033[0m=%d\n", esp_ret, (int)esp_ret, errno);
+	dprintf(1, "%s|%-8p \033[1;31merrno\033[0m=%d\n", esp_ret, esp_ret, errno);
 	errno = 0;
 	dprintf(1, "\033[1;32mGot     :\033[0m size= ");
 	my_ret = ft_strcpy(des, src);
-	dprintf(1, "%s|%-5d \033[1;31merrno\033[0m=%d\n\n", my_ret, (int)my_ret, errno);
+	dprintf(1, "%s|%-8p \033[1;31merrno\033[0m=%d\n\n", my_ret, my_ret, errno);
 }
 
 void    tester_strcpy(void)

@@ -10,8 +10,9 @@ void	print_head(char *s)
 int main()
 {
 	tester_write();
+	tester_read();
 	tester_strlen();
 	tester_strcpy();
-	// print_head("ft-strcmp");
+	tester_strcmp();
 	return (0);
 }

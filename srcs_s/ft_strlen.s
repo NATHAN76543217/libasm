@@ -9,6 +9,7 @@
 
 global		NAME
 
+section .text
 NAME:
 
 	push	rbp
