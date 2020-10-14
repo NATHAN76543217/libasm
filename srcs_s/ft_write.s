@@ -3,7 +3,6 @@
 ; rsi : void *buf
 ; rdx : size_t nbytes 
 
-
 %ifidni		__OUTPUT_FORMAT__, elf64
 	extern		__errno_location
 	%define		ERRNO	__errno_location WRT ..plt
@@ -11,7 +10,7 @@
 	%assign		WRITE_SYSCALL_NB	0x1 
 	%macro		ERRNO_PROCESS	1
 	cmp		rax, 0
-		jns		%1
+	jns		%1
 	neg		rax							;invert error code
 	%endmacro
 %elifidni	__OUTPUT_FORMAT__, macho64
