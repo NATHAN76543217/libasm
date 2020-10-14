@@ -1,9 +1,9 @@
 #include "test.h"
 
-void    test_read(int fd1, int fd2, char *phrase, int cnt)
+void	test_read(int fd1, int fd2, char *phrase, int cnt)
 {
-	int		my_ret;
-	int		esp_ret;
+	int	my_ret;
+	int	esp_ret;
 
 	errno = 0;
 	dprintf(1, "\033[1;36mExpected:\033[0m |");
@@ -44,3 +44,4 @@ void	tester_read(void)
 	dprintf(1, "TESTER ERROR!!!!\n\n");
 	return ;
 }
+

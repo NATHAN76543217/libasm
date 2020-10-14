@@ -1,6 +1,6 @@
 #include "test.h"
 
-void    test_write(int fd, char *phrase, int cnt)
+void	test_write(int fd, char *phrase, int cnt)
 {
 	int		my_ret;
 	int		esp_ret;
@@ -18,7 +18,7 @@ void    test_write(int fd, char *phrase, int cnt)
 void	tester_write(void)
 {
 	char	*phrase = "Phrase ecrite avec ft_write";
-   
+
 	print_head("ft-write");
     test_write(1, phrase, 27);
     test_write(1, "Caractere \0n\0u\0l\0l test :)", 25);

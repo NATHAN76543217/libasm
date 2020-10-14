@@ -61,24 +61,26 @@ S-O			=	$(SC) $(SFLAGS) $< -o $@
 
 DIRS_LIST	=	$(shell ls -R srcs 2> /dev/null | grep / | cut -d / -f2-3 | cut -d : -f 1)
 
-all: $(NAME) $(OBJS_C)
+all: $(NAME)
 	@ printf "\r                                                                                          \r"
-	@ $(CC) -o tester $(OBJS_C) $(NAME)
 
 $(NAME): $(OBJS_S) $(INCS)
 	@ ar -rcs $(NAME) $(OBJS_S)
 
-$(PATH_OBJ_C)/%.o: $(PATH_SRC_C)/%.c $(INCS)
+$(PATH_OBJ_C)/%.o: $(PATH_SRC_C)/%.c $(INCS) $(T_INCS)
 	@ $(shell mkdir -p $(PATH_OBJ_C) $(addprefix $(PATH_OBJ_C)/, $(DIRS_LIST)))
 	@ printf "\033[0;38;5;198mCompilation de \033[1m$< ..."
 	@ $(C-O)
 	@ printf "\r                                                                                          \r"
 
-$(PATH_OBJ_S)/%.o: $(PATH_SRC_S)/%.s 
+$(PATH_OBJ_S)/%.o: $(PATH_SRC_S)/%.s $(INCS)
 	@ $(shell mkdir -p $(PATH_OBJ_S) $(addprefix $(PATH_OBJ_S)/, $(DIRS_LIST)))
 	@ printf "\033[0;38;5;198mCompilation de \033[1m$< ..."
 	@ $(S-O)
 	@ printf "\r                                                                                          \r"
+
+test:	$(NAME) $(OBJS_C) $(INCS) $(T_INCS)
+	@ $(CC) -o tester $(OBJS_C) $(NAME)
 
 clean:
 	@ /bin/rm -rf $(PATH_OBJ_S) $(PATH_OBJ_C)
